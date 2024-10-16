@@ -1,0 +1,726 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="If_DBF" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_ModifiedFHADBF" Type="InArgument(x:String)" />
+    <x:Property Name="in_RequestedAmountDBF" Type="InArgument(x:String)" />
+    <x:Property Name="in_NoteTextDBF" Type="InArgument(x:String)" />
+    <x:Property Name="in_ComplianceSetupURLDBF" Type="InArgument(x:String)" />
+    <x:Property Name="in_HERMITHomeURLDBF" Type="InArgument(x:String)" />
+    <x:Property Name="in_DBFValueDBF" Type="InArgument(x:String)" />
+    <x:Property Name="in_bolIfDBFExistsDBF" Type="InArgument(x:Boolean)" />
+    <x:Property Name="in_strPaymentTypeDBF" Type="InArgument(x:String)" />
+    <x:Property Name="in_dt003TempDBF" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="CurrentRow" Type="InArgument(sd:DataRow)" />
+    <x:Property Name="in_str003ExcelTempDBF" Type="InArgument(x:String)" />
+    <x:Property Name="in_strAddressDBF" Type="InArgument(x:String)" />
+    <x:Property Name="in_strPayeeDBF" Type="InArgument(x:String)" />
+    <x:Property Name="in_strTodayDateDBF" Type="InArgument(x:String)" />
+  </x:Members>
+  <this:If_DBF.in_ModifiedFHADBF>
+    <InArgument x:TypeArguments="x:String" />
+  </this:If_DBF.in_ModifiedFHADBF>
+  <this:If_DBF.in_RequestedAmountDBF>
+    <InArgument x:TypeArguments="x:String" />
+  </this:If_DBF.in_RequestedAmountDBF>
+  <this:If_DBF.in_NoteTextDBF>
+    <InArgument x:TypeArguments="x:String" />
+  </this:If_DBF.in_NoteTextDBF>
+  <this:If_DBF.in_ComplianceSetupURLDBF>
+    <InArgument x:TypeArguments="x:String" />
+  </this:If_DBF.in_ComplianceSetupURLDBF>
+  <this:If_DBF.in_HERMITHomeURLDBF>
+    <InArgument x:TypeArguments="x:String" />
+  </this:If_DBF.in_HERMITHomeURLDBF>
+  <this:If_DBF.in_DBFValueDBF>
+    <InArgument x:TypeArguments="x:String" />
+  </this:If_DBF.in_DBFValueDBF>
+  <this:If_DBF.in_bolIfDBFExistsDBF>
+    <InArgument x:TypeArguments="x:Boolean" />
+  </this:If_DBF.in_bolIfDBFExistsDBF>
+  <this:If_DBF.in_strPaymentTypeDBF>
+    <InArgument x:TypeArguments="x:String" />
+  </this:If_DBF.in_strPaymentTypeDBF>
+  <this:If_DBF.in_dt003TempDBF>
+    <InArgument x:TypeArguments="sd:DataTable" />
+  </this:If_DBF.in_dt003TempDBF>
+  <this:If_DBF.CurrentRow>
+    <InArgument x:TypeArguments="sd:DataRow" />
+  </this:If_DBF.CurrentRow>
+  <this:If_DBF.in_str003ExcelTempDBF>
+    <InArgument x:TypeArguments="x:String" />
+  </this:If_DBF.in_str003ExcelTempDBF>
+  <this:If_DBF.in_strAddressDBF>
+    <InArgument x:TypeArguments="x:String" />
+  </this:If_DBF.in_strAddressDBF>
+  <this:If_DBF.in_strPayeeDBF>
+    <InArgument x:TypeArguments="x:String" />
+  </this:If_DBF.in_strPayeeDBF>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1246,8481</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>If_DBF_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Checks to see if the DBF column has a value greater that 0, if it does then a timetime in created for the DBF. if it does not have a value greater that 0 then the row is ended and it goes to the next row." DisplayName="If_DBF" sap:VirtualizedContainerService.HintSize="864,8416" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="802,8263" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch.Try>
+        <Sequence sap:VirtualizedContainerService.HintSize="764,8035" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Browser HERMIT Home" sap:VirtualizedContainerService.HintSize="702,7924" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="Never" ScopeGuid="8c68de06-1287-4165-a48f-0b97d47112d5" Version="V2">
+            <uix:NApplicationCard.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                </ActivityAction.Argument>
+                <Sequence sap:VirtualizedContainerService.HintSize="668,7707" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If Condition="[in_bolIfDBFExistsDBF]" sap:VirtualizedContainerService.HintSize="606,7592" sap2010:WorkflowViewState.IdRef="If_1">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence sap:VirtualizedContainerService.HintSize="572,6982" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="530,143" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;The DBF value was greater than 0 and the DBF sequence has begun.&quot;]" />
+                        <uix:NGoToUrl DelayAfter="1" DisplayName="Go To URL" sap:VirtualizedContainerService.HintSize="530,82" sap2010:WorkflowViewState.IdRef="NGoToUrl_1" Url="[in_ComplianceSetupURLDBF]" Version="V3" />
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'FHA Case #'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="530,218" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="8c68de06-1287-4165-a48f-0b97d47112d5" Text="[in_ModifiedFHADBF]" Version="V3">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.hermitsp.com/search/ServicingSetupSearch.aspx?eqs=J3o75pVYXpXQ1zdK2z0ySA%3d%3d" CvElementArea="497, 322, 263, 27" CvType="InputBox" DesignTimeRectangle="499, 322, 260, 25" DesignTimeScaleFactor="1.25" ElementType="InputBox" FriendlyName="'INPUT ctl00_loanHeader_…'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;table' tableCol='2' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='16' tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl class='igte_CaribbeanEdit' tag='INPUT' type='text' aaname='' /&gt;" Guid="823229d9-32bc-42df-9d9e-03582b85bc92" InformativeScreenshot="27aae428a39f4dcccf6b1b6f5395b5c2.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Servicing &amp;gt; Assigned Compliance' /&gt;" SearchSteps="FuzzySelector, CV" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvTextArea="316, 326, 98, 16" CvTextArgument="FHA Case #:" CvType="Text" DesignTimeRectangle="316, 321, 182, 27" ElementType="Text" FriendlyName="'FHA Case #'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;table' tableCol='2' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='16' tag='TD' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='TD' class='headerLabel' aaname='                                             FHA Case #:                                         ' check:innerText='FHA Case #:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAALoAAAAfCAYAAABQ39esAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJzSURBVHhe7ZjLbQIxEIZTSUpIT5G40AKXNIDEgXM62AvHdIC2DaAIIiSHxR4/xw/IYlbr//Adwg72jPnG9ubt/HsRAMyZr+8fAdHB7IHooBkgOmgCiA5mD64uoAkgOmgCiA6aAKKDJoDooAl40futeP/4TLAV+1tsLzbqs0V3cMe4cupWMn65Eyfv2fm4Ews9Hv/9JFyO3DwTgdZi0w9/H0S3HHJeie4YxoLxeZno+pmGxsxBksSRMk2L/XrIjcRW6zbhxpwbGdFzO86johtZF91Oj1EiqN0gTrxzQpQ2TS1onVRetL7rnokFz+A1omsp5fhyt7uS/eHT88m8Q8n1+Bo/xoyrYXdbPy7dUOGpxXCr2W78O69woIiXiB58rufL7MTFeRlCyQmai5GcsBvPe6cwxHOB6NPhoTu6uTIkJLFxROd+1HTDaEobgtByWvF+s3inCxsTEVGLnDmJqNncF9HCGsAo1BedE+uK3nnZK4PiXtFtgh2Z5vdrcPOS5OpM5UNiq3Epj1SdYHSqX13yx3lizuK8CLMTh1hjBE1AKIGjzwle9PKrS/hdMC6VRS87AeLXl/R8Mm+Tsy2aPoWytbnNIecx8zr/6ckA0adDXdH1uLww5sUxfhVg5R1wdl35fe46ZOZQtbG1WrJ7L4vsWAlZKV+5Pt41hokHz6Gq6FmRM40gSV1HJOHuzUG1pcaz6o+OlV4jWTPFqPWymkVicmBPKvBvKopuYuM7YEmMghUvbCD7BJDPealMExJM7dEX2hg0l8qLvh/UBtGfDS86ADMDooMmgOigCSA6aAKIDpoAooMmgOigCSA6aAaIDhrgIv4A2IJ2lO60vyEAAAAASUVORK5CYII=" SearchSteps="Selector, FuzzySelector, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                        </uix:NTypeInto>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Search'" sap:VirtualizedContainerService.HintSize="530,157" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8c68de06-1287-4165-a48f-0b97d47112d5" Version="V3">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.hermitsp.com/search/ServicingSetupSearch.aspx?eqs=J3o75pVYXpXQ1zdK2z0ySA%3d%3d" CvElementArea="1699, 418, 93, 43" CvTextArea="1714, 430, 58, 17" CvTextArgument="Search" CvType="Button" DesignTimeRectangle="1683, 414, 113, 50" DesignTimeScaleFactor="1.25" ElementType="InputBox" FriendlyName="'INPUT ctl00_loanHeader_…'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;table' tableCol='2' tableRow='1' tag='TABLE' /&gt;&lt;webctrl name='ctl00$loanHeader$btnSearch' tableRow='25' tag='INPUT' type='image' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl name='ctl00$loanHeader$btnSearch' class='' tag='INPUT' type='image' aaname='' /&gt;" Guid="6a637fd9-dcd3-475c-8920-fcf098ea62fc" InformativeScreenshot="6acdb6e707adfebe06f2e15af1c231da.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='HERMIT' /&gt;" SearchSteps="FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="2" DisplayName="Click 'Compu-Link Corporation' for dynamic loan" sap:VirtualizedContainerService.HintSize="530,157" sap2010:WorkflowViewState.IdRef="NClick_2" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8c68de06-1287-4165-a48f-0b97d47112d5" Version="V3">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.hermitsp.com/search/ServicingSetupSearch.aspx?eqs=J3o75pVYXpXQ1zdK2z0ySA%3d%3d" CvTextArea="1496, 626, 182, 20" CvTextArgument="Compu-Link Corporation" CvType="Text" DesignTimeRectangle="1494, 622, 190, 29" DesignTimeScaleFactor="1.25" ElementType="Text" FriendlyName="'Compu-Link Corporation'" FullSelectorArgument="&lt;webctrl class='hermit-grid' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableCol='13' tableRow='2' tag='TD' /&gt;" FuzzySelectorArgument="&lt;webctrl class='hermit-grid' tag='TABLE' /&gt;&lt;webctrl type='' class='' tag='TD' aaname='Compu-Link Corporation' check:innerText='Compu-Link Corporation' /&gt;" Guid="01cd6813-baf8-4cf3-88f2-d33608c9a07c" InformativeScreenshot="54754853727b69bfb8a759e7fe1474be.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='HERMIT' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                        <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="530,671" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                          <TryCatch.Try>
+                            <ui:RetryScope DisplayName="Retry Scope" sap:VirtualizedContainerService.HintSize="492,443" sap2010:WorkflowViewState.IdRef="RetryScope_3" NumberOfRetries="3" RetryInterval="00:00:01">
+                              <ui:RetryScope.ActivityBody>
+                                <ActivityAction>
+                                  <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="450,268" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <uix:NSelectItem DelayAfter="3" DisplayName="Select Item 'Servicing Type' dropdown" sap:VirtualizedContainerService.HintSize="388,157" sap2010:WorkflowViewState.IdRef="NSelectItem_8" Item="Request for Payment" ScopeIdentifier="8c68de06-1287-4165-a48f-0b97d47112d5" Version="V3">
+                                      <uix:NSelectItem.Items>
+                                        <scg:List x:TypeArguments="x:String" Capacity="9">
+                                          <x:String></x:String>
+                                          <x:String>Insurance - Flood Policy</x:String>
+                                          <x:String>Insurance - Hazard Policy</x:String>
+                                          <x:String>Insurance/Hardest Hit Funds Administration</x:String>
+                                          <x:String>Insurance/Loss Draft Administration</x:String>
+                                          <x:String>Occupancy Compliance Certification</x:String>
+                                          <x:String>Request for Payment</x:String>
+                                          <x:String>Request for Unscheduled Advance</x:String>
+                                          <x:String>Taxes Delinquent</x:String>
+                                        </scg:List>
+                                      </uix:NSelectItem.Items>
+                                      <uix:NSelectItem.Target>
+                                        <uix:TargetAnchorable BrowserURL="https://qc.hermitsp.com/search/ServicingSetupSearch.aspx?eqs=J3o75pVYXpXQ1zdK2z0ySA%3d%3d" DesignTimeRectangle="838, 361, 358, 22" DesignTimeScaleFactor="1" ElementType="DropDown" FriendlyName="'SELECT'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table' parentid='svcmodal' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='SELECT' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='svcmodal' tag='TABLE' /&gt;&lt;webctrl type='' tag='SELECT' class='' aaname='' /&gt;" Guid="19c4c813-fd25-4f15-9b63-be13f714ebad" InformativeScreenshot="95372e0df0feae105e4cde2445708fc6.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='HERMIT' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                                          <uix:TargetAnchorable.Anchors>
+                                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                              <uix:Target CvTextArea="650, 365, 98, 16" CvTextArgument="Servicing Type:" CvType="Text" DesignTimeRectangle="650, 365, 98, 15" ElementType="Text" FriendlyName="'Servicing Type'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table' parentid='svcmodal' tableRow='1' tag='TABLE' /&gt;&lt;webctrl parentid='svcmodal' tableRow='1' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='svcmodal' tag='TABLE' /&gt;&lt;webctrl parentid='svcmodal' type='' tag='SPAN' class='hermit-span' aaname='Servicing Type:' check:innerText='Servicing Type:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGYAAAATCAYAAABiMHgQAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIkSURBVFhH7VbLbcMwDO0kHaE79eJDRsgQPgRZoJdeXcBrJBkjCLKEKluizK+sBGkrpHoAgcSiaD4+ksmLa6gSTZhK0YSpFE2YSiGFuYyue3t3r2Cb0V3j0eNxcLvid9zieyvO7muDODPrhnP0+z0wYRj50z4k1x/m08ejFmEQoDF/jHMZqDCVJPWnqFqYXGJs1e1O8bnHsZ+ebd2u385n3cfn7ItXwXUIZ+GenAI4l/GZbyrgiNbQ1n1dZucZJFa/L5s4IYwyqXGTAC/OG58Bgk80koO+CcRvDAngDReeJx2IL8WAu0tSsLv37oi/pyRoUlS0hXCIbwgDsXlB1VzRfQtCGIunzbuIR054D/nj75FIRLNeCCR450DCE8gd5k+T4iJyGMIYBEWuRgEEFGFo3jKO4E1iWP4WzwBVGAB0AgThgiWLJDRhUmLeJ9zH5zjptcKx8xVhZC5r8SM0YfCkszU2If+u+FkYrxNFVhi+imQXUujCLM87ssYmYAIVT4wHNNXMgXEUvFcmpgREGCCjrxoPljQnbwmT/nYj34B8MaEYIV4+l9JcVwtkCJOeKzEC7+VOvi5cKP49QExMIgDGieAEveVHGhBfLqZBJsXfb3b8mjAeOFY3jGoBBCxh0kRTzhMS72FpQN0HDNehUJjnRSyAKHgpQBjZeHZD3o/nFQbWJ5sw3snFgElSJq4JcyPo+vB257QsK1EvfhPmH6EJUyWc+wY9AVevnmBmzQAAAABJRU5ErkJggg==" SearchSteps="Selector, FuzzySelector" />
+                                            </scg:List>
+                                          </uix:TargetAnchorable.Anchors>
+                                        </uix:TargetAnchorable>
+                                      </uix:NSelectItem.Target>
+                                    </uix:NSelectItem>
+                                  </Sequence>
+                                </ActivityAction>
+                              </ui:RetryScope.ActivityBody>
+                              <ui:RetryScope.Condition>
+                                <ActivityFunc x:TypeArguments="x:Boolean" />
+                              </ui:RetryScope.Condition>
+                            </ui:RetryScope>
+                          </TryCatch.Try>
+                          <TryCatch.Catches>
+                            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="496,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ActivityAction x:TypeArguments="s:Exception">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                </ActivityAction.Argument>
+                                <ui:RetryScope DisplayName="Retry Scope" sap:VirtualizedContainerService.HintSize="492,443" sap2010:WorkflowViewState.IdRef="RetryScope_4" NumberOfRetries="3" RetryInterval="00:00:01">
+                                  <ui:RetryScope.ActivityBody>
+                                    <ActivityAction>
+                                      <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="450,268" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <uix:NSelectItem DelayAfter="3" DisplayName="Select Item 'Servicing Type' dropdown" sap:VirtualizedContainerService.HintSize="388,157" sap2010:WorkflowViewState.IdRef="NSelectItem_9" Item="Request for Payment" ScopeIdentifier="8c68de06-1287-4165-a48f-0b97d47112d5" Version="V3">
+                                          <uix:NSelectItem.Items>
+                                            <scg:List x:TypeArguments="x:String" Capacity="9">
+                                              <x:String></x:String>
+                                              <x:String>Insurance - Flood Policy</x:String>
+                                              <x:String>Insurance - Hazard Policy</x:String>
+                                              <x:String>Insurance/Hardest Hit Funds Administration</x:String>
+                                              <x:String>Insurance/Loss Draft Administration</x:String>
+                                              <x:String>Occupancy Compliance Certification</x:String>
+                                              <x:String>Request for Payment</x:String>
+                                              <x:String>Request for Unscheduled Advance</x:String>
+                                              <x:String>Taxes Delinquent</x:String>
+                                            </scg:List>
+                                          </uix:NSelectItem.Items>
+                                          <uix:NSelectItem.Target>
+                                            <uix:TargetAnchorable BrowserURL="https://qc.hermitsp.com/search/ServicingSetupSearch.aspx?eqs=J3o75pVYXpXQ1zdK2z0ySA%3d%3d" DesignTimeRectangle="838, 361, 358, 22" DesignTimeScaleFactor="1" ElementType="DropDown" FriendlyName="'SELECT'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table' parentid='svcmodal' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='SELECT' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='svcmodal' tag='TABLE' /&gt;&lt;webctrl type='' tag='SELECT' class='' aaname='' /&gt;" Guid="19c4c813-fd25-4f15-9b63-be13f714ebad" InformativeScreenshot="95372e0df0feae105e4cde2445708fc6.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='HERMIT' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                                              <uix:TargetAnchorable.Anchors>
+                                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                                  <uix:Target CvTextArea="650, 365, 98, 16" CvTextArgument="Servicing Type:" CvType="Text" DesignTimeRectangle="650, 365, 98, 15" ElementType="Text" FriendlyName="'Servicing Type'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table' parentid='svcmodal' tableRow='1' tag='TABLE' /&gt;&lt;webctrl parentid='svcmodal' tableRow='1' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='svcmodal' tag='TABLE' /&gt;&lt;webctrl parentid='svcmodal' type='' tag='SPAN' class='hermit-span' aaname='Servicing Type:' check:innerText='Servicing Type:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGYAAAATCAYAAABiMHgQAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIkSURBVFhH7VbLbcMwDO0kHaE79eJDRsgQPgRZoJdeXcBrJBkjCLKEKluizK+sBGkrpHoAgcSiaD4+ksmLa6gSTZhK0YSpFE2YSiGFuYyue3t3r2Cb0V3j0eNxcLvid9zieyvO7muDODPrhnP0+z0wYRj50z4k1x/m08ejFmEQoDF/jHMZqDCVJPWnqFqYXGJs1e1O8bnHsZ+ebd2u385n3cfn7ItXwXUIZ+GenAI4l/GZbyrgiNbQ1n1dZucZJFa/L5s4IYwyqXGTAC/OG58Bgk80koO+CcRvDAngDReeJx2IL8WAu0tSsLv37oi/pyRoUlS0hXCIbwgDsXlB1VzRfQtCGIunzbuIR054D/nj75FIRLNeCCR450DCE8gd5k+T4iJyGMIYBEWuRgEEFGFo3jKO4E1iWP4WzwBVGAB0AgThgiWLJDRhUmLeJ9zH5zjptcKx8xVhZC5r8SM0YfCkszU2If+u+FkYrxNFVhi+imQXUujCLM87ssYmYAIVT4wHNNXMgXEUvFcmpgREGCCjrxoPljQnbwmT/nYj34B8MaEYIV4+l9JcVwtkCJOeKzEC7+VOvi5cKP49QExMIgDGieAEveVHGhBfLqZBJsXfb3b8mjAeOFY3jGoBBCxh0kRTzhMS72FpQN0HDNehUJjnRSyAKHgpQBjZeHZD3o/nFQbWJ5sw3snFgElSJq4JcyPo+vB257QsK1EvfhPmH6EJUyWc+wY9AVevnmBmzQAAAABJRU5ErkJggg==" SearchSteps="Selector, FuzzySelector" />
+                                                </scg:List>
+                                              </uix:TargetAnchorable.Anchors>
+                                            </uix:TargetAnchorable>
+                                          </uix:NSelectItem.Target>
+                                        </uix:NSelectItem>
+                                      </Sequence>
+                                    </ActivityAction>
+                                  </ui:RetryScope.ActivityBody>
+                                  <ui:RetryScope.Condition>
+                                    <ActivityFunc x:TypeArguments="x:Boolean" />
+                                  </ui:RetryScope.Condition>
+                                </ui:RetryScope>
+                              </ActivityAction>
+                            </Catch>
+                          </TryCatch.Catches>
+                        </TryCatch>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Initiation Date'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="530,218" sap2010:WorkflowViewState.IdRef="NTypeInto_2" ScopeIdentifier="8c68de06-1287-4165-a48f-0b97d47112d5" Text="[in_strTodayDateDBF]" Version="V3">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.hermitsp.com/search/ServicingSetupSearch.aspx?eqs=J3o75pVYXpXQ1zdK2z0ySA%3d%3d" CvElementArea="802, 354, 452, 29" CvType="InputBox" DesignTimeRectangle="806, 356, 429, 25" DesignTimeScaleFactor="1.25" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl tableRow='3' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='text' tag='INPUT' class='igte_CaribbeanEditInContainer' aaname='' /&gt;" Guid="b47fd3ff-aa9b-4337-ad8b-29ae33e093fe" InformativeScreenshot="74c46169bd9ba84d6ec36a41f310e548.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='HERMIT' /&gt;" SearchSteps="FuzzySelector, CV" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvTextArea="569, 360, 116, 16" CvTextArgument="Initiation Date:" CvType="Text" DesignTimeRectangle="571, 359, 116, 20" ElementType="Text" FriendlyName="'Initiation Date'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table' parentid='svcmodal' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='3' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='svcmodal' tag='TABLE' /&gt;&lt;webctrl type='' tag='SPAN' class='hermit-span' aaname='Initiation Date:' check:innerText='Initiation Date:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAHgAAAAYCAYAAAAxkDmIAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJMSURBVGhD7ZbNbQIxEIVTSUpIT1w4UEKK4IDoAyTaAMpAiCac9doez3qeJ/vjFYnlJ70DXu/MeD7by4dpqloNcOVqgCtXA1y5GuDK1QBXrgj4fjSfX5vOR3PzQ2N129v3Ou+vfsTLxtxdzMv/fJ2+3Tw2Nl4Pc95tzOHuf5qrOfT18rH1RWvIeEktfey0hwu1GmAEcz5gBPNvAu49A1L2kCxUEcBI82EivQcmkrYugjSjzrcAHiSl587b08PPksXxhfL5uebIU/Ftzk//8Hkx28Eza1tjHrqMl2xaimnzuKs/OzeRvnFZrAGoWCuZnqf5neOa0uesN15aTeMAZxyKWAJYwgj2C5kEGDfL+bdNwwzhOemA+XpCHwHc4L5fGuD8u3xTFwEcA7KkKVC2a1WYNBZi4eajnOoYu2XiPNbAkJcDRvWBUxKkNbNX0keaz3pD/WIxUA/RGMXP5U80DnASLE2MChkHmEvu1qmAYUOsaG3yVojxOtF4OcBc9G4wiyFr124j63yNXOO/wUwlAdO7wNMAx4bw/we9UnA5kAUAR4i+j2wzCauA5YYf+j8AppwMCmvINMD5evMnuDzgYQ38FOo3o6xd2bAT9FbA9JvljGPTAeN3tW9wWcAyf6wxQopjOmA2hvoD8iOtDzi4eyaKY6cVGcF0tgAQdO27xaCVAKwZQgJGgL37DaH0J65Zh74aYNFsBNiKXdOhsTCemIcAOwkI6cJXA4zek33AeYabGJ547+x6VcBNVaoBrlwNcOVqgCtXA1y5GuCqZcwPZk7BkCL15WIAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                        </uix:NTypeInto>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="1" DisplayName="Click 'Requested Amount'" sap:VirtualizedContainerService.HintSize="530,157" sap2010:WorkflowViewState.IdRef="NClick_3" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8c68de06-1287-4165-a48f-0b97d47112d5" Version="V3">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.hermitsp.com/search/ServicingSetupSearch.aspx?eqs=J3o75pVYXpXQ1zdK2z0ySA%3d%3d" CvElementArea="803, 417, 450, 27" CvType="InputBox" DesignTimeRectangle="805, 418, 447, 25" DesignTimeScaleFactor="1.25" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;table' tableCol='1' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='2' tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl class='igte_CaribbeanEdit' tag='INPUT' type='text' aaname='' /&gt;" Guid="33411880-c3c1-48bd-8990-852d5f269586" InformativeScreenshot="647cafbe4496773806d26774b6f066d1.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='HERMIT' /&gt;" SearchSteps="FuzzySelector, CV" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvTextArea="569, 421, 158, 18" CvTextArgument="Requested Amount:" CvType="Text" DesignTimeRectangle="571, 420, 158, 20" ElementType="Text" FriendlyName="'Requested Amount'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;table' tableCol='1' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='2' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='SPAN' class='hermit-span' aaname='Requested Amount:' check:innerText='Requested Amount:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAKIAAAAYCAYAAAB5oyYIAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAM0SURBVGhD7ZbNceMwDIW3kpSwPe3Fh5TgInLIpA9nxm0kLiOTSRNcyfzBA/Eo0bKyVrx4MziEokEA76OUX8Hl2oAcRNcm5CC6NiEH0bUJOYiuTchBdG1CAuLpJTz8/jMR+/D6mfbekb4O+/Dw9Jb+uk7nXOOsHo/hK6019XkMO5jv7vCRHtyJRp565pB0AYhj3BeM70+prxuAWPaWeAnv6dlP10UXMomAyGB7C895YCuZtgXdDsSP8PoYz94djmW2z6f0+IfrG0FsmSYD7fpt3nPKn6W8X0DXZsyvx7BvE/vGwRx13fXz+fxmzzCXbgPKZzn237wQap8+L3/K1WzJuXYOVS9VLUVmXXthPE2/1esxYq14+ey/IRe/ESVJbZYEQsMKk+BNish69b+VhNTNINR7JkDsyD/V+zlmQDTAltm3IGGxDzvSg/jDe4wBvSwAkUesfUUQp0IGVQ7EW5xz5AHjIMs+HJBtchpE3kwxNp1ha4Mzod6pfVP5BXRm6BCTILIzpE9lEp0fApH9gP4M3DhTsm8RiHBhyDnmonWoG0QNCDREIxVfcrZu+qUg4jBYxHMElBQAH8qC2JMfeq/ydhnQML7Ugr8FEClMcH59Nn1RjCqepPMXgKjfaNa7lUCUgpShqqE5w1KOtUEEY3jIOcWIKnCIxqyu/AKCNqTPADVTGgAEhYSfr89u12hy0jMGmfVOjwatDuIoNFSammgUtQBEla/sy022hjGjUscYBNZyyfryt9428wZI/qkoM6CQ9IDYrtH4bGacZHhozcaufwuI+jMszwRQMdYUAE0yiFmTODi8BLFJ+C00qYcOe9AE0p81qyc/9Imzgl6bBsCFYKCbmV4BotSIZ5H+Fnh0IxAH4ZCzabhWBRaKA7FBoGhEyQlm6oC6m3uGADjrM89G9OTHi8OiYYABrVYN6hUgapjq4Pl45L0LQMxxnjmvO6sPxEH8hllDdJFRurDBhJkBxxifNZo3l4DUzC4KQBil6y8D6slf9z7ktjCgYL+pI6vacxWIUQaKudrOwTySPXMgGi8vAvFfig7Y9T/LQXRtQg6iaxO6DYguVyUH0bUJOYiuDSiEvywnl/2yWUbyAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Requested Amount'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="530,218" sap2010:WorkflowViewState.IdRef="NTypeInto_3" ScopeIdentifier="8c68de06-1287-4165-a48f-0b97d47112d5" Text="[in_DBFValueDBF]" Version="V3">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.hermitsp.com/search/ServicingSetupSearch.aspx?eqs=J3o75pVYXpXQ1zdK2z0ySA%3d%3d" CvElementArea="803, 417, 450, 27" CvType="InputBox" DesignTimeRectangle="805, 418, 447, 25" DesignTimeScaleFactor="1.25" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;table' tableCol='1' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='2' tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl class='igte_CaribbeanEdit' tag='INPUT' type='text' aaname='' /&gt;" Guid="70214593-3d3d-4b63-922c-b8a5f12b1b21" InformativeScreenshot="647cafbe4496773806d26774b6f066d1.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='HERMIT' /&gt;" SearchSteps="FuzzySelector, CV" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvTextArea="569, 421, 158, 18" CvTextArgument="Requested Amount:" CvType="Text" DesignTimeRectangle="571, 420, 158, 20" ElementType="Text" FriendlyName="'Requested Amount'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;table' tableCol='1' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='2' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='SPAN' class='hermit-span' aaname='Requested Amount:' check:innerText='Requested Amount:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAKIAAAAYCAYAAAB5oyYIAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAM0SURBVGhD7ZbNceMwDIW3kpSwPe3Fh5TgInLIpA9nxm0kLiOTSRNcyfzBA/Eo0bKyVrx4MziEokEA76OUX8Hl2oAcRNcm5CC6NiEH0bUJOYiuTchBdG1CAuLpJTz8/jMR+/D6mfbekb4O+/Dw9Jb+uk7nXOOsHo/hK6019XkMO5jv7vCRHtyJRp565pB0AYhj3BeM70+prxuAWPaWeAnv6dlP10UXMomAyGB7C895YCuZtgXdDsSP8PoYz94djmW2z6f0+IfrG0FsmSYD7fpt3nPKn6W8X0DXZsyvx7BvE/vGwRx13fXz+fxmzzCXbgPKZzn237wQap8+L3/K1WzJuXYOVS9VLUVmXXthPE2/1esxYq14+ey/IRe/ESVJbZYEQsMKk+BNish69b+VhNTNINR7JkDsyD/V+zlmQDTAltm3IGGxDzvSg/jDe4wBvSwAkUesfUUQp0IGVQ7EW5xz5AHjIMs+HJBtchpE3kwxNp1ha4Mzod6pfVP5BXRm6BCTILIzpE9lEp0fApH9gP4M3DhTsm8RiHBhyDnmonWoG0QNCDREIxVfcrZu+qUg4jBYxHMElBQAH8qC2JMfeq/ydhnQML7Ugr8FEClMcH59Nn1RjCqepPMXgKjfaNa7lUCUgpShqqE5w1KOtUEEY3jIOcWIKnCIxqyu/AKCNqTPADVTGgAEhYSfr89u12hy0jMGmfVOjwatDuIoNFSammgUtQBEla/sy022hjGjUscYBNZyyfryt9428wZI/qkoM6CQ9IDYrtH4bGacZHhozcaufwuI+jMszwRQMdYUAE0yiFmTODi8BLFJ+C00qYcOe9AE0p81qyc/9Imzgl6bBsCFYKCbmV4BotSIZ5H+Fnh0IxAH4ZCzabhWBRaKA7FBoGhEyQlm6oC6m3uGADjrM89G9OTHi8OiYYABrVYN6hUgapjq4Pl45L0LQMxxnjmvO6sPxEH8hllDdJFRurDBhJkBxxifNZo3l4DUzC4KQBil6y8D6slf9z7ktjCgYL+pI6vacxWIUQaKudrOwTySPXMgGi8vAvFfig7Y9T/LQXRtQg6iaxO6DYguVyUH0bUJOYiuDSiEvywnl/2yWUbyAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                        </uix:NTypeInto>
+                        <uix:NSelectItem DisplayName="Select Item 'Requested By'" sap:VirtualizedContainerService.HintSize="501,157" sap2010:WorkflowViewState.IdRef="NSelectItem_2" Item="Lender Party" ScopeIdentifier="8c68de06-1287-4165-a48f-0b97d47112d5" Version="V3">
+                          <uix:NSelectItem.Items>
+                            <scg:List x:TypeArguments="x:String" Capacity="4">
+                              <x:String></x:String>
+                              <x:String>Borrower</x:String>
+                              <x:String>Authorized Party</x:String>
+                              <x:String>Lender Party</x:String>
+                            </scg:List>
+                          </uix:NSelectItem.Items>
+                          <uix:NSelectItem.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.hermitsp.com/search/ServicingSetupSearch.aspx?eqs=J3o75pVYXpXQ1zdK2z0ySA%3d%3d" CvTextArea="842, 514, 78, 16" CvTextArgument="Lender Party" CvType="Text" DesignTimeRectangle="838, 510, 358, 22" DesignTimeScaleFactor="1" ElementType="DropDown" FriendlyName="'Lender Party'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;table' tableCol='1' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='4' tag='SELECT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='SELECT' class='' aaname='' /&gt;" Guid="be7cb9ca-9282-4ade-a064-ab46c6f1beb3" InformativeScreenshot="c9b0fd66debe29751ebe51f0a732bb8f.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='HERMIT' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvTextArea="649, 514, 94, 16" CvTextArgument="Requested By:" CvType="Text" DesignTimeRectangle="650, 514, 93, 15" ElementType="Text" FriendlyName="'Requested By'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;table' tableCol='1' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='4' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='SPAN' class='hermit-span' aaname='Requested By:' check:innerText='Requested By:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGEAAAATCAYAAACA7GNpAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIISURBVFhH7VbLjQIxDN1KtoTtaS8cKIEi5oDog5GmDaAMhGgiSyZ24l8mYQAxi/IkH8ZJbD+/OPDlGt6OJsIC0ERYAJoICwAR4eC2P7/u27DV/gx7Phln16893507gofhMriV0Rtv2xPsmQktwnpwV/B4HDufaOP6CzgWjmM3t9ZKEboDODzwzGP9KYrgTrtR7f8wDY9dmDkiOHfdb8b+PDIN80QAXzBBmq51gyImG6VJYDMwBicdzifDcxgHDetl+zPcRjNqZZicBDhj9IrztYW+/zkSicI6BhUxIslaEUSRQDySgnjm3htkbP4NtcUmlmtlqPpNgJpiD2VPa0VQRgS4ISfKWIgQqKZRTAR12wSp2Ci6J8FsemwArkMtFbUyZJ6jEDPFCXygBpXDRn4SImFeFCaV5hPln5Y7RVCG5zEeMdVkIYKysF5TK0NGBOWHb98PyTWHyecoNpwkngz89EmYABEM85kiED4MT5oE7Yc4603w5/ITFH4T0m2KN0YUP0ncmCZ+A9PN5t+wXxBUtxfi43dYTwJPi1KulSEjgp6o5POWRPawhS7+MJvFRV8wWgC9ofY/jiSs9/eKRBJmNFEPJeiNkWS5Q7OCEGiiwcVaCeheYbzRN8S96UIEFEV4BeykHw8UQV7oDJoILwBOq5qQDJoITwV5SiunwOPFIjTUoInwdjj3B1YCx+fDfDQfAAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NSelectItem.Target>
+                        </uix:NSelectItem>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Payee'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="501,218" sap2010:WorkflowViewState.IdRef="NTypeInto_7" ScopeIdentifier="8c68de06-1287-4165-a48f-0b97d47112d5" Text="[in_strPayeeDBF]" Version="V3">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.hermitsp.com/search/ServicingSetupSearch.aspx?eqs=J3o75pVYXpXQ1zdK2z0ySA%3d%3d" CvElementArea="837, 534, 360, 22" CvType="InputBox" DesignTimeRectangle="838, 535, 358, 20" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;table' tableCol='1' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='5' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='text' tag='INPUT' class='' aaname='' /&gt;" Guid="faec01d6-5936-43e0-a412-0c7b873c983b" InformativeScreenshot="1086bd3afe791a61ec48252b8ea62918.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='HERMIT' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvTextArea="649, 538, 44, 16" CvTextArgument="Payee:" CvType="Text" DesignTimeRectangle="650, 538, 43, 15" ElementType="Text" FriendlyName="'Payee'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;table' tableCol='1' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='5' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='SPAN' class='hermit-span' aaname='Payee:' check:innerText='Payee:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAC8AAAATCAYAAAAAn1R6AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEzSURBVEhL7VTBDYMwDOwkHaE79cODERiCB2IPkFgDGAMhlnAhsUPihEJQSqHqSX7EJPb5cuEGF8af/LfwK+RryB5PuFuRQ4M7zgabfFzBgBnoK4h47kR4T35Ek07qJ1D2mDgR/Mm3uWapMdJapIciEeusFcsRHZTxtEeznXGWC0L7MbCuAJ6Lig4TEn62wTUVMQnjeWpKZ2nNCEhRaDA2KOuznTwPl9+Z+qS2TojfxNINiu98UBrG1VvDqm0MUBMkYVlFEbItI8nbIdRUdXlolnPAizwna/ucaiRMSYfyOizlt2EXeem92WYzeVNhPe/2PA3j9vzSeyH42Yb9EaI0F02Mouo9OK5cfZNhDMf/NjqPdfKBQAQ9LbAHwcmTbUxVP4OA5Oc3cITqE8Lb5kBcmDzAC7UPnyYYq9FnAAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                        </uix:NTypeInto>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Payee Mailing Address'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="501,218" sap2010:WorkflowViewState.IdRef="NTypeInto_8" ScopeIdentifier="8c68de06-1287-4165-a48f-0b97d47112d5" Text="[in_strAddressDBF]" Version="V3">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.hermitsp.com/search/ServicingSetupSearch.aspx?eqs=J3o75pVYXpXQ1zdK2z0ySA%3d%3d" CvElementArea="837, 556, 359, 22" CvType="InputBox" DesignTimeRectangle="838, 558, 358, 20" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;table' tableCol='1' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='6' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='text' tag='INPUT' class='' aaname='' /&gt;" Guid="da0187a7-39f7-4856-82da-fca6a08b0761" InformativeScreenshot="784190489149f5bfa54c21120af2702d.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='HERMIT' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvTextArea="649, 561, 150, 16" CvTextArgument="Payee Mailing Address:" CvType="Text" DesignTimeRectangle="650, 561, 149, 15" ElementType="Text" FriendlyName="'Payee Mailing Address'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;table' tableCol='1' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='6' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='SPAN' class='hermit-span' aaname='Payee Mailing Address:' check:innerText='Payee Mailing Address:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAJkAAAATCAYAAACDd68EAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAMASURBVGhD7VfbbeMwELxKroTrKT/+cAkuwh+C+4iBtOGkjCBIEzyK++DucklaOSmPEwdYBKLI5ezskIp/hYGBjTFMNrA5hskGNscw2cDmECa7henPQ/hdxCU844zvgddwPRK3U7i+4XDE++OJeR8eX3G0gbencJjnn2/pkdZPL+kxPJ/LPdZG5nzPPlR7vSe2hu+A0mTHp/COI9wEOfblkCaTYurxn2GypZz/R5NFfMZpXgbdGDII8T8cQeS7TGbw6Q1ik19c7UvsxWQvl1QER+UWcAVRa61xa+axyHmnxA3zY+4pNmz+m01m/w0QfBbdZFmfaxqHUM2U9R0jvwWGqB5mmfMc9y5yyvou4VqpYTrDOOkC4xim58SLQh1Y0oxCrfU9tOxzic+0qW4KridzmAaSWLpIEssY0uyjkeeCoNAY4BLXq31wruFf43iXyRzTgV7mmc1RM5mp2egD6Of0OdoadF53jdFE94nmGj0LzlYTQP8ff7MggYuF0AWBAO2GRWCO9N423xajIJrDgtzy/FazKP7FZMypZxLz3qKo2WlQN2e5pqu7s0b2jXmZOQDafw6Zs43u51KBCcAGtqBsnFJgKKSMJKAsTIXXIJmbOJ/S+pRLNSaLovbZwGSFFoUhNOrzc/O6OW09Ee0aZmAdReQ5Za9EDaivjMzPxyKT2QJKEXTTZfFlsQKOWHVooaUgiYc0WcdUa5qsf+tI0Ds/OEc3Z9mzu03WukwYOHcOpzdZe6/GjA+ZDIrOBLLJnKYTjGC6eCNe03R6LnHitZ7JsCbmtoXJ7Hvk4TbA8GIU4/2cLscYdZN16rLGRk6q58wPNajxRSz7XLKwEIf4Sy4TQLTE5XcQyoQmd52Haa4xihUpm3DOib/4KPeqJouQ9bm/BAH6sEpQTmEK4ljNKXWr/7qUJpsB43md4mj6pA876sAh13ZNthKIoCK2R2Dzm4d2H1jdZHRC9C21A/CNQycbT/XuD9uqJhPX6E6FVZ/mOcYtlrD+53JgwGCYbGBjhPAXRxiCuniX1w0AAAAASUVORK5CYII=" SearchSteps="Selector, FuzzySelector" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                        </uix:NTypeInto>
+                        <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="501,1026" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
+                          <ui:IfElseIf.ConditionBlocks>
+                            <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                              <ui:IfElseIfBlock BlockType="If" Condition="[in_strPaymentTypeDBF= &quot;Tax&quot;]">
+                                <ui:IfElseIfBlock.Then>
+                                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,268" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <uix:NSelectItem DisplayName="Select Item 'Reason for Request'" sap:VirtualizedContainerService.HintSize="388,157" sap2010:WorkflowViewState.IdRef="NSelectItem_4" Item="Property Charge Request" ScopeIdentifier="8c68de06-1287-4165-a48f-0b97d47112d5" Version="V3">
+                                      <uix:NSelectItem.Items>
+                                        <scg:List x:TypeArguments="x:String" Capacity="10">
+                                          <x:String></x:String>
+                                          <x:String>Endorsed Release Fee Request</x:String>
+                                          <x:String>General / Misc. Invoice Payment Request</x:String>
+                                          <x:String>Hardest Hit Funds</x:String>
+                                          <x:String>Loss Draft Request</x:String>
+                                          <x:String>Overage Refund</x:String>
+                                          <x:String>Property Charge Request</x:String>
+                                          <x:String>Release 1st Fee Request</x:String>
+                                          <x:String>Release 2nd Fee Request</x:String>
+                                          <x:String>Other</x:String>
+                                        </scg:List>
+                                      </uix:NSelectItem.Items>
+                                      <uix:NSelectItem.Target>
+                                        <uix:TargetAnchorable BrowserURL="https://qc.hermitsp.com/search/ServicingSetupSearch.aspx?eqs=J3o75pVYXpXQ1zdK2z0ySA%3d%3d" DesignTimeRectangle="621, 325, 358, 22" DesignTimeScaleFactor="1" ElementType="DropDown" FriendlyName="'SELECT ddlReasonForRequ…'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;table' tableCol='1' tableRow='1' tag='TABLE' /&gt;&lt;webctrl id='ddlReasonForRequest' tableRow='2' tag='SELECT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='ddlReasonForRequest' type='' tag='SELECT' class='' aaname='' /&gt;" Guid="6813268f-df42-4a61-9f24-15bc5a287398" InformativeScreenshot="2cc580de9572da421d5e71bbe27d46ee.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='HERMIT' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                                          <uix:TargetAnchorable.Anchors>
+                                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                              <uix:Target CvTextArea="432, 328, 131, 16" CvTextArgument="Reason for Request:" CvType="Text" DesignTimeRectangle="433, 328, 130, 15" ElementType="Text" FriendlyName="'Reason for Request'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;table' tableCol='1' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='2' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='SPAN' class='hermit-span' aaname='Reason for Request:' check:innerText='Reason for Request:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAIYAAAATCAYAAABV0nVhAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJwSURBVGhD7VfLbQIxEE0lKSE95bIHSqAIDog+QKINoAyEaMKx1zP2/LwfCEEbzZPm4O/Me/N2Fz6Cw2HAjeEw4cZwmHBjOEwUY9z36/D59W3ELpxhz7JwCtvf5nA7ho5pU2N7gT3/BMoYjCAKsTnBxHJg8nkWph7XcFglcyzlAYoPzOoY7jBqYdgYiyNd8XfGeFGulwDeoq8xBs5BmE8PxjocbrAUgTkwuv0VVjLOm/Gz2z15nTcIyjylRvkpYLWjaLv4RKV1nr/HDGMwLqJOWl8X+fBmyebN7QH9hKbAc43eXHb9WPZi5qdEFAnreGkWAwsRBM29VXw5lvUUMaEWs14Cta64yAagoIYhEKYxdOM4F7gXz4g7Cq/JxpjRg1HOEVONoYKKoBJBkTRRKRwC1/AsnSsQ4vXgc6rRDUIIuT+PedP5nCGaBOXAoprCuoc2S/FQ++XYNkKrBzlXDv3QTOAIaLwxanOZ8CPClKL6olsC0WiRTeDnlaAzjZFzW8bAPRNEE3XieX4G7lGRc+s6ZF45bhhDRXu9ajSBI6D9KSkJCAmzgYgxghSwVu6CsWUM0YRHjZHHljFwbqhegOJvPUDD9ygear8cj70x2sBcszgCBn9jlIsnFQlJYU2dlY2EsziWT5KsR9U30xha0LGGGLCagnOkds5F3CvumKwxjgd7INYici3iLOXY0HH4x2dJRA/WOU4oApLkiL/uWVERbD0GFTgik8CoQic8bYyEIjIEy/+gMSJ0cyUXokEC0aFT/0oiqE6bo2r2YA/kWkPHFL02DR2LMRzvwgRDvgFujLfDjeEw4cZwLAhuDIeBEH4AFjjcQI3S+K0AAAAASUVORK5CYII=" SearchSteps="Selector, FuzzySelector" />
+                                            </scg:List>
+                                          </uix:TargetAnchorable.Anchors>
+                                        </uix:TargetAnchorable>
+                                      </uix:NSelectItem.Target>
+                                    </uix:NSelectItem>
+                                  </Sequence>
+                                </ui:IfElseIfBlock.Then>
+                              </ui:IfElseIfBlock>
+                              <ui:IfElseIfBlock BlockType="Else">
+                                <ui:IfElseIfBlock.Then>
+                                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,526" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <uix:NSelectItem DisplayName="Select Item 'Reason for Request'" sap:VirtualizedContainerService.HintSize="388,157" sap2010:WorkflowViewState.IdRef="NSelectItem_7" Item="Other" ScopeIdentifier="8c68de06-1287-4165-a48f-0b97d47112d5" Version="V3">
+                                      <uix:NSelectItem.Items>
+                                        <scg:List x:TypeArguments="x:String" Capacity="10">
+                                          <x:String></x:String>
+                                          <x:String>Endorsed Release Fee Request</x:String>
+                                          <x:String>General / Misc. Invoice Payment Request</x:String>
+                                          <x:String>Hardest Hit Funds</x:String>
+                                          <x:String>Loss Draft Request</x:String>
+                                          <x:String>Overage Refund</x:String>
+                                          <x:String>Property Charge Request</x:String>
+                                          <x:String>Release 1st Fee Request</x:String>
+                                          <x:String>Release 2nd Fee Request</x:String>
+                                          <x:String>Other</x:String>
+                                        </scg:List>
+                                      </uix:NSelectItem.Items>
+                                      <uix:NSelectItem.Target>
+                                        <uix:TargetAnchorable BrowserURL="https://qc.hermitsp.com/search/ServicingSetupSearch.aspx?eqs=J3o75pVYXpXQ1zdK2z0ySA%3d%3d" DesignTimeRectangle="621, 325, 358, 22" DesignTimeScaleFactor="1" ElementType="DropDown" FriendlyName="'SELECT ddlReasonForRequ…'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;table' tableCol='1' tableRow='1' tag='TABLE' /&gt;&lt;webctrl id='ddlReasonForRequest' tableRow='2' tag='SELECT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl id='ddlReasonForRequest' type='' tag='SELECT' class='' aaname='' /&gt;" Guid="673cb038-21e8-4167-833a-7693ca5acfb4" InformativeScreenshot="2cc580de9572da421d5e71bbe27d46ee.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='HERMIT' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                                          <uix:TargetAnchorable.Anchors>
+                                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                              <uix:Target CvTextArea="432, 328, 131, 16" CvTextArgument="Reason for Request:" CvType="Text" DesignTimeRectangle="433, 328, 130, 15" ElementType="Text" FriendlyName="'Reason for Request'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;table' tableCol='1' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='2' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='SPAN' class='hermit-span' aaname='Reason for Request:' check:innerText='Reason for Request:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAIYAAAATCAYAAABV0nVhAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJwSURBVGhD7VfLbQIxEE0lKSE95bIHSqAIDog+QKINoAyEaMKx1zP2/LwfCEEbzZPm4O/Me/N2Fz6Cw2HAjeEw4cZwmHBjOEwUY9z36/D59W3ELpxhz7JwCtvf5nA7ho5pU2N7gT3/BMoYjCAKsTnBxHJg8nkWph7XcFglcyzlAYoPzOoY7jBqYdgYiyNd8XfGeFGulwDeoq8xBs5BmE8PxjocbrAUgTkwuv0VVjLOm/Gz2z15nTcIyjylRvkpYLWjaLv4RKV1nr/HDGMwLqJOWl8X+fBmyebN7QH9hKbAc43eXHb9WPZi5qdEFAnreGkWAwsRBM29VXw5lvUUMaEWs14Cta64yAagoIYhEKYxdOM4F7gXz4g7Cq/JxpjRg1HOEVONoYKKoBJBkTRRKRwC1/AsnSsQ4vXgc6rRDUIIuT+PedP5nCGaBOXAoprCuoc2S/FQ++XYNkKrBzlXDv3QTOAIaLwxanOZ8CPClKL6olsC0WiRTeDnlaAzjZFzW8bAPRNEE3XieX4G7lGRc+s6ZF45bhhDRXu9ajSBI6D9KSkJCAmzgYgxghSwVu6CsWUM0YRHjZHHljFwbqhegOJvPUDD9ygear8cj70x2sBcszgCBn9jlIsnFQlJYU2dlY2EsziWT5KsR9U30xha0LGGGLCagnOkds5F3CvumKwxjgd7INYici3iLOXY0HH4x2dJRA/WOU4oApLkiL/uWVERbD0GFTgik8CoQic8bYyEIjIEy/+gMSJ0cyUXokEC0aFT/0oiqE6bo2r2YA/kWkPHFL02DR2LMRzvwgRDvgFujLfDjeEw4cZwLAhuDIeBEH4AFjjcQI3S+K0AAAAASUVORK5CYII=" SearchSteps="Selector, FuzzySelector" />
+                                            </scg:List>
+                                          </uix:TargetAnchorable.Anchors>
+                                        </uix:TargetAnchorable>
+                                      </uix:NSelectItem.Target>
+                                    </uix:NSelectItem>
+                                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Comments'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="388,218" sap2010:WorkflowViewState.IdRef="NTypeInto_11" ScopeIdentifier="8c68de06-1287-4165-a48f-0b97d47112d5" Text="[in_strPaymentTypeDBF]" Version="V3">
+                                      <uix:NTypeInto.Target>
+                                        <uix:TargetAnchorable BrowserURL="https://qc.hermitsp.com/search/ServicingSetupSearch.aspx?eqs=J3o75pVYXpXQ1zdK2z0ySA%3d%3d" CvElementArea="618, 442, 362, 54" CvType="InputBox" DesignTimeRectangle="621, 444, 358, 51" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'TEXTAREA'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;table' tableCol='1' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='7' tag='TEXTAREA' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='TEXTAREA' class='' aaname='' /&gt;" Guid="abcd4253-7358-4959-a97e-d76d8a93c9bb" InformativeScreenshot="7c0e8fdac7524ea107840c3447112123.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='HERMIT' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                                          <uix:TargetAnchorable.Anchors>
+                                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                              <uix:Target CvTextArea="431, 463, 74, 13" CvTextArgument="Comments:" CvType="Text" DesignTimeRectangle="433, 463, 73, 15" ElementType="Text" FriendlyName="'Comments'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;table' tableCol='1' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='7' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='SPAN' class='hermit-span' aaname='Comments:' check:innerText='Comments:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAE0AAAATCAYAAADVjYA3AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGCSURBVFhH7ZbNzcIwDECZhBHYiUsPjMAQHBB7tFLXKB0DIZYw+bFdx2mUNKKH71Oe5EOckMYPp3CAxmaatAqatAqatAoiac/bGY4nEZcRPjjX8AhpLxguVtQDnpgBmODu5Mnc3+bTX+E+46ASlmY3O56uMLwx8Q/xNZ5/JW2ty9KEV1iKxs40V3oQa7p+wv198KHnB86P2NE2zH7zCB2P1Zneci4UwFLMfryGXi/4LI7bFHyGoutfLu/g84mcAaUtxebeX17YIir89ug60zyN9TyKoEKiwtQ8FsjCgoLjs2ghJFaPaT+Somv7kTRcR0U4ZE5JiTpYjTNS1iWli47mVdGpz7szFDQMse166qIcUriWXyaNv8lCaVGkpOakGaJ/CzkHho0/BIWdtrM0WbSkRtoCnt1GUF8MS1vvNtpoyRW903aSlpOYk0bj5Dzur9fzGBHSPFG7rtz1cI3szp2lWSiHIQvKSpPdRGfENRzyWaXSGnmatAqatAqatAqatM0AfAEp77zwoB9qcQAAAABJRU5ErkJggg==" SearchSteps="Selector, FuzzySelector" />
+                                            </scg:List>
+                                          </uix:TargetAnchorable.Anchors>
+                                        </uix:TargetAnchorable>
+                                      </uix:NTypeInto.Target>
+                                    </uix:NTypeInto>
+                                  </Sequence>
+                                </ui:IfElseIfBlock.Then>
+                              </ui:IfElseIfBlock>
+                            </sc:BindingList>
+                          </ui:IfElseIf.ConditionBlocks>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:IfElseIf>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Check box' Go to Servicing Steps after Submit" sap:VirtualizedContainerService.HintSize="501,157" sap2010:WorkflowViewState.IdRef="NClick_4" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8c68de06-1287-4165-a48f-0b97d47112d5" Version="V3">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.hermitsp.com/search/ServicingSetupSearch.aspx?eqs=J3o75pVYXpXQ1zdK2z0ySA%3d%3d" CvElementArea="809, 856, 23, 23" CvType="CheckBox" DesignTimeRectangle="812, 858, 20, 20" DesignTimeScaleFactor="1.25" ElementType="CheckBox" FriendlyName="'Checkbox'" FullSelectorArgument="&lt;webctrl tableRow='25' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='checkbox' tag='INPUT' class='' aaname='Go to Servicing Steps after Submit' /&gt;" Guid="5dbe47fc-19ad-45fd-aaa3-af1cb5b6672c" InformativeScreenshot="81c92f6a1766d7ada6be358e6bd2c419.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='HERMIT' /&gt;" SearchSteps="FuzzySelector, CV" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvTextArea="834, 857, 258, 16" CvTextArgument="Go to Servicing Steps after Submit" CvType="Text" DesignTimeRectangle="836, 857, 256, 19" ElementType="Text" FriendlyName="'unchecked'" FullSelectorArgument="&lt;webctrl tableRow='25' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='LABEL' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='LABEL' class='' aaname='Go to Servicing Steps after Submit' check:innerText='Go to Servicing Steps after Submit' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAQQAAAAXCAYAAADtPTGLAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAVsSURBVHhe7Zpdcts6DIW9xsxkCb1ruI93Mt6Ks5R0IX3IMlRRAEjgAKQoxXXrXnwzfLBF4ucAhJxpL0uSJAmTAyFJkkoOhCRJKjkQkiSp5EBIkqSSAyFJkkp3IHy8XZbLBdbbBz+9Az9uy8vrbfnkj1/m+9XHe0/7u3ws19Xny/usx6P778CsRmXfPWv9ED6X22vL6/p9/eoheVAdjaaXl+X2gx8fYLtzv6hnP99f1riua7RM5/75gSBN4zZL4ueSRe6ZPCWLcUmD3CfeZ2deI/7u2QbC1rcPzqNcqvVO4FAnrY8P+185EJCeLxgIfOm7Iu49n+d+yY/etKNn/yeOaPScA8G9AR+Qx6iHz/T3HzcQ4reIpey5rs1jDOFP0WFS8lZqa/t5tzF61uPokNrzQfau7zT9tz3f/oljMW+I6NKhL60t7K9vOM5HVpDXVsy6Z70E7u2IzGoEvoN442fUFy2Wts9phr0yjLthcy5LLr+v5+X1v+Vf/flAHhTfdbnxW76sXg9STHoI9eAYUX/WQuzLJb2ZXA/ozP0o3+lebANz3P9qIPDGgxOKHGmj4nAslJ9QXCj9HSdtL5mnNctecfo+WvzSMEETQUGbyAXa02L1vmi/2IX9tcAqB5d/oG09B40NzGsUNK80mvrO5iKfwT5q67SWc+OYfK/4XvV2zuVR9TT+OlTtbU6eIJYC6FFr1O0Z+Wz3hLUF26iP15RQAyFu+jF4CZjO31YaDMgXlKBkxw1TBd9EaQv9u+Iz1kesg48Pi2y1iPOhM7QnHgi2scBHuEfiHw+EaqvkppavEeaF+gi8j2s41Nbs2aslwL3kLtymBV6UUX3m8uhp3IP8FrtquYvmY9kAX8P4+GyocxjzuB91XTQTA4G/N4sD6hWrJ4ACA+oFiIXfB+OVs1B4jfEBF1XAXF3u9lw3nwr4CfOMmsFfqLBJhvQ0KmDteG9QSx3PVGysWfHpB9EMHFsQt/d/Lo/j/dagC91WyxFjYeAi93pmV2ewQ9j+wnM9X8f/ZNCChYEUOgIobEAD318okMRHdtlH+Rwu8QEXtWJz8oXR52a0BD9hntYONRw0Q+FuGhVsnhKn10uWatSp+vk6eK0t9qJx/mDX1+NcHl/SsiK+xA7GwrD2ZiAEd0bn5vNcATuE7S88NzEQ5NCOGFqwP+AXQiiQgpqpPN+PiYCLqmi+yJbdo8+xryifCvgJ87R2ernu1W1eowLq1NdDczY28j2wHzb7Cujl/Z/LY6/fKt3eZ0zcGAsDufXugM4t1DnUyOaL53q+zEAQI8NLYwTr7GexRuJjQL3Gsc0asONL+wnFXLHfjxqHntG/QGCs4wIILR7wEzYiDJaw8Gxz1MQHNKo+VU3t84bXtlO/4Gyj00PMuC/a917vc3nEdYiA2iDGTjwQKGYYCK5n7Nmwr8K+GPdjTwsYCCvcPN3AyjNlCJNq+/C8xSfGjaGD5ER7jSxIDLiPvtfFDXy4ywIXFaCigY0NPNfPh7SC/WEjYtMF2rLNOb1nNOIcA41MQ0MTin19Tr6zeyBHsOPg5ybumnOzRbatBmfyoM9Yhw5iT/souJ4KcpezynftLRxiO3nGGtr+wnOhnRU/EBg6wAHKwsSFWiBeMAlDlCBNODV0tjVZmIKyV1cYL/oYC+ngXP3z6NwonzMDgaiNs621qNtZX1zHrEaqnk0biredtbFKg+l/v4/qF/WV1T8A+6vEDJcubPATecR1GOH7qXfe1Y1zkNhkgNn/h2BzGuU56mN3Lrx/g4GQPA9bscPh9zjCRk2ejhwIz0T0JoA35e8iB8LfQQ6EJ4Munv5JOfGT+wHkQPg7yIGQJEklB0KSJMyy/AT1SwL2JZka+wAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                        <ui:RetryScope DisplayName="Retry Scope: Submit Step 1" sap:VirtualizedContainerService.HintSize="530,479" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="3" RetryInterval="1.00:00:00">
+                          <ui:RetryScope.ActivityBody>
+                            <ActivityAction>
+                              <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="450,304" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="2" DisplayName="Click 'Submit'" sap:VirtualizedContainerService.HintSize="388,193" sap2010:WorkflowViewState.IdRef="NClick_5" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8c68de06-1287-4165-a48f-0b97d47112d5" Version="V3">
+                                  <uix:NClick.Target>
+                                    <uix:TargetAnchorable BrowserURL="https://www.hermitsp.com/search/ServicingSetupSearch.aspx?eqs=J3o75pVYXpXQ1zdK2z0ySA%3d%3d" CvElementArea="854, 891, 93, 43" CvTextArea="870, 902, 58, 17" CvTextArgument="Submit" CvType="Button" DesignTimeRectangle="851, 886, 100, 50" DesignTimeScaleFactor="1.25" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl tableRow='25' tag='TABLE' /&gt;&lt;webctrl tableRow='2' tag='INPUT' /&gt;" FuzzyMatches="10000" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='image' tag='INPUT' class='' aaname='' /&gt;" Guid="b9147ff4-5d38-45ba-b298-83d0c20597da" InformativeScreenshot="6dbe30e7f85d996dedb6b38337a3b5e7.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='HERMIT' /&gt;" SearchSteps="FuzzySelector, CV" Version="V2" Visibility="Interactive">
+                                      <uix:TargetAnchorable.Anchors>
+                                        <scg:List x:TypeArguments="uix:ITarget" Capacity="2">
+                                          <uix:Target CvElementArea="960, 890, 93, 44" CvTextArea="977, 902, 57, 17" CvTextArgument="Cancel" CvType="Button" DesignTimeRectangle="956, 886, 100, 50" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl tableRow='25' tag='TABLE' /&gt;&lt;webctrl name='ctl00$loanHeader$ServicingModal$frmClaims$btnMessageCancelEdit' tableRow='2' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl name='ctl00$loanHeader$ServicingModal$frmClaims$btnMessageCancelEdit' type='image' tag='INPUT' class='' aaname='' /&gt;" ImageBase64="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" SearchSteps="FuzzySelector, CV" />
+                                          <uix:Target CvTextArea="834, 857, 258, 16" CvTextArgument="Go to Servicing Steps after Submit" CvType="Text" DesignTimeRectangle="836, 857, 256, 19" ElementType="Text" FriendlyName="'unchecked'" FullSelectorArgument="&lt;webctrl tableRow='25' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='LABEL' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='LABEL' class='' aaname='Go to Servicing Steps after Submit' check:innerText='Go to Servicing Steps after Submit' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAQQAAAAXCAYAAADtPTGLAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAVsSURBVHhe7Zpdcts6DIW9xsxkCb1ruI93Mt6Ks5R0IX3IMlRRAEjgAKQoxXXrXnwzfLBF4ucAhJxpL0uSJAmTAyFJkkoOhCRJKjkQkiSp5EBIkqSSAyFJkkp3IHy8XZbLBdbbBz+9Az9uy8vrbfnkj1/m+9XHe0/7u3ws19Xny/usx6P778CsRmXfPWv9ED6X22vL6/p9/eoheVAdjaaXl+X2gx8fYLtzv6hnP99f1riua7RM5/75gSBN4zZL4ueSRe6ZPCWLcUmD3CfeZ2deI/7u2QbC1rcPzqNcqvVO4FAnrY8P+185EJCeLxgIfOm7Iu49n+d+yY/etKNn/yeOaPScA8G9AR+Qx6iHz/T3HzcQ4reIpey5rs1jDOFP0WFS8lZqa/t5tzF61uPokNrzQfau7zT9tz3f/oljMW+I6NKhL60t7K9vOM5HVpDXVsy6Z70E7u2IzGoEvoN442fUFy2Wts9phr0yjLthcy5LLr+v5+X1v+Vf/flAHhTfdbnxW76sXg9STHoI9eAYUX/WQuzLJb2ZXA/ozP0o3+lebANz3P9qIPDGgxOKHGmj4nAslJ9QXCj9HSdtL5mnNctecfo+WvzSMEETQUGbyAXa02L1vmi/2IX9tcAqB5d/oG09B40NzGsUNK80mvrO5iKfwT5q67SWc+OYfK/4XvV2zuVR9TT+OlTtbU6eIJYC6FFr1O0Z+Wz3hLUF26iP15RQAyFu+jF4CZjO31YaDMgXlKBkxw1TBd9EaQv9u+Iz1kesg48Pi2y1iPOhM7QnHgi2scBHuEfiHw+EaqvkppavEeaF+gi8j2s41Nbs2aslwL3kLtymBV6UUX3m8uhp3IP8FrtquYvmY9kAX8P4+GyocxjzuB91XTQTA4G/N4sD6hWrJ4ACA+oFiIXfB+OVs1B4jfEBF1XAXF3u9lw3nwr4CfOMmsFfqLBJhvQ0KmDteG9QSx3PVGysWfHpB9EMHFsQt/d/Lo/j/dagC91WyxFjYeAi93pmV2ewQ9j+wnM9X8f/ZNCChYEUOgIobEAD318okMRHdtlH+Rwu8QEXtWJz8oXR52a0BD9hntYONRw0Q+FuGhVsnhKn10uWatSp+vk6eK0t9qJx/mDX1+NcHl/SsiK+xA7GwrD2ZiAEd0bn5vNcATuE7S88NzEQ5NCOGFqwP+AXQiiQgpqpPN+PiYCLqmi+yJbdo8+xryifCvgJ87R2ernu1W1eowLq1NdDczY28j2wHzb7Cujl/Z/LY6/fKt3eZ0zcGAsDufXugM4t1DnUyOaL53q+zEAQI8NLYwTr7GexRuJjQL3Gsc0asONL+wnFXLHfjxqHntG/QGCs4wIILR7wEzYiDJaw8Gxz1MQHNKo+VU3t84bXtlO/4Gyj00PMuC/a917vc3nEdYiA2iDGTjwQKGYYCK5n7Nmwr8K+GPdjTwsYCCvcPN3AyjNlCJNq+/C8xSfGjaGD5ER7jSxIDLiPvtfFDXy4ywIXFaCigY0NPNfPh7SC/WEjYtMF2rLNOb1nNOIcA41MQ0MTin19Tr6zeyBHsOPg5ybumnOzRbatBmfyoM9Yhw5iT/souJ4KcpezynftLRxiO3nGGtr+wnOhnRU/EBg6wAHKwsSFWiBeMAlDlCBNODV0tjVZmIKyV1cYL/oYC+ngXP3z6NwonzMDgaiNs621qNtZX1zHrEaqnk0biredtbFKg+l/v4/qF/WV1T8A+6vEDJcubPATecR1GOH7qXfe1Y1zkNhkgNn/h2BzGuU56mN3Lrx/g4GQPA9bscPh9zjCRk2ejhwIz0T0JoA35e8iB8LfQQ6EJ4Munv5JOfGT+wHkQPg7yIGQJEklB0KSJMyy/AT1SwL2JZka+wAAAABJRU5ErkJggg==" SearchSteps="Selector, FuzzySelector, CV" />
+                                        </scg:List>
+                                      </uix:TargetAnchorable.Anchors>
+                                    </uix:TargetAnchorable>
+                                  </uix:NClick.Target>
+                                  <uix:NClick.VerifyOptions>
+                                    <uix:VerifyExecutionOptions DisplayName="Element 'Edit Servicing'" Mode="Disappears">
+                                      <uix:VerifyExecutionOptions.Retry>
+                                        <InArgument x:TypeArguments="x:Boolean" />
+                                      </uix:VerifyExecutionOptions.Retry>
+                                      <uix:VerifyExecutionOptions.Target>
+                                        <uix:TargetAnchorable BrowserURL="https://www.hermitsp.com/search/ServicingSetupSearch.aspx?eqs=J3o75pVYXpXQ1zdK2z0ySA%3d%3d" DesignTimeRectangle="563, 210, 815, 737" DesignTimeScaleFactor="1.25" FriendlyName="'Edit Servicing'" FullSelectorArgument="&lt;webctrl tableRow='20' tag='TABLE' /&gt;&lt;webctrl class='modalRound' tableCol='2' tableRow='1' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl class='modalRound' type='' aaname=' &amp;#x9;&amp;#x9;                                          &amp;#x9;' tag='DIV' check:innerText='Edit Servicing Management&amp;#x9;&amp;#xD;&amp;#xA;Servicing Management Information&amp;#xD;&amp;#xA;Servicing Type:  *&amp;#x9;&amp;#xD;&amp;#xA;Insurance - Flood' /&gt;" Guid="1dd33109-7736-4631-abbe-5161656940ab" InformativeScreenshot="7dec3a8620a257108fee759b54b49413.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='HERMIT' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive" />
+                                      </uix:VerifyExecutionOptions.Target>
+                                      <uix:VerifyExecutionOptions.Timeout>
+                                        <InArgument x:TypeArguments="x:Double" />
+                                      </uix:VerifyExecutionOptions.Timeout>
+                                    </uix:VerifyExecutionOptions>
+                                  </uix:NClick.VerifyOptions>
+                                </uix:NClick>
+                              </Sequence>
+                            </ActivityAction>
+                          </ui:RetryScope.ActivityBody>
+                          <ui:RetryScope.Condition>
+                            <ActivityFunc x:TypeArguments="x:Boolean" />
+                          </ui:RetryScope.Condition>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:RetryScope>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="530,143" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Step 1 of the DBF sequence has been submitted.&quot;]" />
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="2" DisplayName="VERIFY THIS ACTIVITY!!'" sap:VirtualizedContainerService.HintSize="530,157" sap2010:WorkflowViewState.IdRef="NClick_6" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8c68de06-1287-4165-a48f-0b97d47112d5" Version="V3">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.hermitsp.com/forms/loans/servicing_steps_steps.aspx?LoanSkey=815098&amp;stci=10&amp;ServicingType=1080&amp;mgtskey=16873493&amp;frmscrn=SERVSETUP" CvTextArea="353, 521, 178, 16" CvTextArgument="Request Verified by Specialist" CvType="Text" DesignTimeRectangle="350, 515, 260, 27" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'Request Verified'" FullSelectorArgument="&lt;webctrl id='gvSteps' tableRow='1' tag='TABLE' /&gt;&lt;webctrl isleaf='1' tableCol='8' tableRow='5' tag='TD' /&gt;" FuzzySelectorArgument="&lt;webctrl id='gvSteps' tag='TABLE' /&gt;&lt;webctrl isleaf='1' type='' class='' tag='TD' aaname='Request Verified by Specialist' check:innerText='Request Verified by Specialist' /&gt;" Guid="314d7b98-b7ab-4119-a619-a1487e05f43f" InformativeScreenshot="c1236c8c4c6be07bf77a9cda6271a04f.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Servicing &amp;gt; Assigned Compliance&amp;gt;Steps' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                  <uix:Target CvTextArea="334, 521, 9, 13" CvTextArgument="2" CvType="Text" DesignTimeRectangle="332, 515, 18, 27" ElementType="Text" FriendlyName="'2'" FullSelectorArgument="&lt;webctrl id='gvSteps' tableRow='1' tag='TABLE' /&gt;&lt;webctrl isleaf='1' tableRow='5' tag='TD' /&gt;" FuzzySelectorArgument="&lt;webctrl id='gvSteps' tag='TABLE' /&gt;&lt;webctrl isleaf='1' type='' tag='TD' class='' aaname='2' check:innerText='2' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABYAAAAfCAYAAADjuz3zAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACkSURBVEhL7ZZRCoAgDEB3QU/kj+eok9g5+ugUXmG1wjHFUEujD4WnG8pjrAQBj2GMoeX1kB6gpAfgnDsDWt8iPUPM8RBz/L14mxUCAKOXcD9FXrzoQ6bRBrnCaRVnEhRVHGJRF1T9H/HVb9GaG+rEZ39bfTxPhZQoExf+CZK8eJ1QVVTqyYrjy+FR8xaci8lX/JAhZoaY+UZMSQ/6PQppai9G3AGLQmRwwy7qkgAAAABJRU5ErkJggg==" SearchSteps="Selector, FuzzySelector" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Step Note' DBF" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="530,218" sap2010:WorkflowViewState.IdRef="NTypeInto_4" ScopeIdentifier="8c68de06-1287-4165-a48f-0b97d47112d5" Text="DBF" Version="V3">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.hermitsp.com/forms/loans/servicing_steps_steps.aspx?LoanSkey=815098&amp;stci=10&amp;ServicingType=1080&amp;mgtskey=16873493&amp;frmscrn=SERVSETUP" CvElementArea="899, 550, 325, 68" CvType="InputBox" DesignTimeRectangle="902, 550, 321, 66" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'TEXTAREA'" FullSelectorArgument="&lt;webctrl class='headerLabel' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='27' tag='TEXTAREA' /&gt;" FuzzySelectorArgument="&lt;webctrl class='headerLabel' tag='TABLE' /&gt;&lt;webctrl type='' tag='TEXTAREA' class='' aaname='' /&gt;" Guid="620fec78-2333-4474-8288-e2044db12598" InformativeScreenshot="ae82503ce34213ec72cf13ec49b5327a.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Servicing &amp;gt; Assigned Compliance&amp;gt;Steps' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                  <uix:Target CvTextArea="753, 577, 67, 16" CvTextArgument="Step Note:" CvType="Text" DesignTimeRectangle="752, 549, 147, 71" ElementType="Text" FriendlyName="'Step Note'" FullSelectorArgument="&lt;webctrl class='headerLabel' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='27' tag='TD' /&gt;" FuzzySelectorArgument="&lt;webctrl class='headerLabel' tag='TABLE' /&gt;&lt;webctrl type='' tag='TD' class='' aaname='                                                         Step Note:                                                     ' check:innerText='Step Note:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAJcAAABLCAYAAAB9YxUtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKBSURBVHhe7dfLTQMxFEZhKqEEemKTBSVQRBZR+ghS2iApA6E0YTKxr8e+tsMj88OC80mWYCbzED54JncBECEuyBAXZIgLMsQFGeKCDHFBhrggQ1yQIS7IEBdkiAsyxAUZ4oIMcUGGuCBDXJAhLsgQF2SICzLEBRniggxxQYa4IENckCEuyBAXZIgLMsQFGeKCDHFBhrgg04/rfR9WD4/h3sbTPpzSLrXT7jlec/2atkxew+aX7wO368TlJvK47U+2aKJzXA/P4eU9bfxhXId1eQ78tjYuW7WqmEraVWSOq7zG9695WE/nIK6/NI5rGk1gb+HlKe27DJs8t708Lse6jYFcxjYc0m6vius8Nsdpaz+uGJCNOSR/jtXuLe6wVdh9fmLHxOthCd13rnrS/B/cT7SFlYJJMeUJzbFaUNdXoTzJu3Tc5XPtMX5l8nE0K1cKy+4r7p8jJ67l9V/oz4b//X6im8doim24vzPxhXKS7efVObQ6rnQP1cpab/PXGMVGTDrDuEyclGkMVp68MvlRr2RlCNdWiXpfupaNK8H6++rH1Y75nwZL+zSu5rE3iqua6MINK1f5+2UsuXJBrolrfhQNHoP+sTd458oTb7/nifXnq7Wrmp2/PsbH0o+yiKn7zjU+Hrfrrlz2h87DhVDuj5NRBOA/n2PbF5+ZX6S97iTbtzx3HzEQG25VylGfh4VefVusr0Fcy/vCY/FGncci/gfiggxxQUYfF/4t4oIMcUGGuCBDXJAhLsgQF2SICzLEBRniggxxQYa4IENckCEuyBAXZIgLMsQFGeKCDHFBhrggQ1yQIS7IEBdkiAsyxAUZ4oIMcUGGuCBDXJAhLoiE8AEe0Ul6VAN1ygAAAABJRU5ErkJggg==" SearchSteps="Selector, FuzzySelector" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                        </uix:NTypeInto>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into: Completed Date" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="530,218" sap2010:WorkflowViewState.IdRef="NTypeInto_10" ScopeIdentifier="8c68de06-1287-4165-a48f-0b97d47112d5" Text="[in_strTodayDateDBF]" Version="V3">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.hermitsp.com/forms/loans/servicing_steps_steps.aspx?LoanSkey=166970&amp;stci=10&amp;ServicingType=1080&amp;mgtskey=16870796&amp;frmscrn=SERVSETUP" CvElementArea="1133, 497, 86, 24" CvType="InputBox" DesignTimeRectangle="1135, 499, 67, 20" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl tableCol='61' tableRow='3' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='text' tag='INPUT' class='hermit-filter-field igte_CaribbeanEditInContainer' aaname='' /&gt;" Guid="4b1851d9-f685-42ba-a61c-7a68e927e870" InformativeScreenshot="1b21f2cedbf71bc92bbb66321e00095e.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Servicing &amp;gt; Assigned Compliance&amp;gt;Steps' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvTextArea="1025, 501, 99, 16" CvTextArgument="Complete Date:" CvType="Text" DesignTimeRectangle="1026, 501, 100, 15" ElementType="Text" FriendlyName="'Complete Date'" FullSelectorArgument="&lt;webctrl class='headerLabel' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='3' tag='LABEL' /&gt;" FuzzySelectorArgument="&lt;webctrl class='headerLabel' tag='TABLE' /&gt;&lt;webctrl type='' tag='LABEL' class='' aaname='                                                             Complete Date:' check:innerText='Complete Date:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGgAAAATCAYAAAB8+UijAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIKSURBVFhH7ZbNjcIwEIW3ki2BnrhwoASKyAHRB0i0AZSBEE14EzwvmR//xCwLltZPmgPxeDLzvjjkyzVVrQaocjVAlasBqlwBQFd3WC/d94JFd6K1T+jktkMP66O705U/0+3oVnxuxAfnV4ACZqDpdxgUVDmgc7dxhxv9KBFm5UCemX/Y8yKoAtC56xtZ7NyZftehMkB+hhcC6nXfbx4naXuhCylFajwrBqjECMpFiD1TncPDLB+r/Um8Oqdhkb9z23GdGxzo67Ib6/BcGIlY7a9+IZJvFDOXro/1zN8Aaipfxodd5Yv6gfmYJkCzyeuCuDmaQZO2aQ8Fv2P5kXq4H5kNs/SpNycoky+UAYTrsobqz9RQ8xjYar9SOSAaWBx3cU0D0IZnAPSSrxS5HgOAfvR6Ll9oJiAvzEERA2T20r4IEK3iV1zwfSyeUl2nHFCqnjfchjwhGpCN6QlmygCS90Ce6j8GyATmT6v8IyH0BIprvwdUdIKUwoDi+UIRQKl+ZgPS0GdKAAqZNd4g1lDW8JmA+vAGZOqJ02UBeDMZkEy+UNBMPQ/69f0Bnlkfa6h5zD10fSkFaBAKsjD00SSFKK5vOBNQnz999XEDAwOQ6QhxmmHAEOg7lc/F9/LQ84t6/dfno2/Mg4dgCMyhPE36JRUA9G6lG/zvaoAqVwNUuSoA1JRSA1S1nPsBXe7niTkhXZUAAAAASUVORK5CYII=" SearchSteps="Selector, FuzzySelector" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                        </uix:NTypeInto>
+                        <ui:RetryScope DisplayName="Retry Scope: Submit Step 2" sap:VirtualizedContainerService.HintSize="530,559" sap2010:WorkflowViewState.IdRef="RetryScope_2" NumberOfRetries="3" RetryInterval="1.00:00:00">
+                          <ui:RetryScope.ActivityBody>
+                            <ActivityAction>
+                              <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="450,304" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="2" DisplayName="Click 'Submit'" sap:VirtualizedContainerService.HintSize="388,193" sap2010:WorkflowViewState.IdRef="NClick_7" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8c68de06-1287-4165-a48f-0b97d47112d5" Version="V3">
+                                  <uix:NClick.Target>
+                                    <uix:TargetAnchorable BrowserURL="https://www.hermitsp.com/forms/loans/servicing_steps_steps.aspx?eqs=2nGP4U%2bFPnxDEbBZdy13PMh7UvMkXmxgzTKxySlv388dDOrpqEwzSew%2fgN6iGCvitFyesOhIQOeK7Mxqy8ovgm6ekIYYGYAuwXOOUkavoo8%3d" DesignTimeRectangle="899, 711, 80, 40" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'INPUT ctl00_ctl00_MainC…'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table' idx='2' tableCol='2' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='12' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='image' tag='INPUT' class='' aaname='' /&gt;" Guid="a8eb1d9a-daea-4f58-b29c-45c089377125" InformativeScreenshot="ca3e7399ba99bcca67d3c727a13daa2b.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Servicing &amp;gt; Assigned Compliance&amp;gt;Steps' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
+                                      <uix:TargetAnchorable.Anchors>
+                                        <scg:List x:TypeArguments="uix:ITarget" Capacity="3">
+                                          <uix:Target DesignTimeRectangle="991, 711, 80, 40" ElementType="InputBox" FriendlyName="'INPUT ctl00_ctl00_MainC…'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table' idx='2' tableCol='2' tableRow='1' tag='TABLE' /&gt;&lt;webctrl name='ctl00$ctl00$MainContent$ContentPlaceHolder1$ImageButton1' tableRow='12' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl name='ctl00$ctl00$MainContent$ContentPlaceHolder1$ImageButton1' type='image' tag='INPUT' class='' aaname='' /&gt;" SearchSteps="FuzzySelector" />
+                                          <uix:Target DesignTimeRectangle="752, 481, 147, 22" FriendlyName="'Scheduled Date: *'" FullSelectorArgument="&lt;webctrl class='headerLabel' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='3' tag='TD' /&gt;" FuzzySelectorArgument="&lt;webctrl class='headerLabel' tag='TABLE' /&gt;&lt;webctrl type='' tag='TD' class='' aaname='                                                         Scheduled Date:                                                     ' check:innerText='Scheduled Date: *' /&gt;" SearchSteps="FuzzySelector" />
+                                          <uix:Target CvTextArea="942, 392, 60, 16" CvTextArgument="Edit Step" CvType="Text" DesignTimeRectangle="943, 392, 58, 15" ElementType="Text" FriendlyName="'Edit Step'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table' tableCol='2' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='SPAN' class='hermit-modal-title' aaname='Edit Step' check:innerText='Edit Step' /&gt;" ImageBase64="" SearchSteps="Selector, FuzzySelector, CV" />
+                                        </scg:List>
+                                      </uix:TargetAnchorable.Anchors>
+                                    </uix:TargetAnchorable>
+                                  </uix:NClick.Target>
+                                  <uix:NClick.VerifyOptions>
+                                    <uix:VerifyExecutionOptions DisplayName="Element 'Step Item'" Mode="Disappears">
+                                      <uix:VerifyExecutionOptions.Retry>
+                                        <InArgument x:TypeArguments="x:Boolean" />
+                                      </uix:VerifyExecutionOptions.Retry>
+                                      <uix:VerifyExecutionOptions.Target>
+                                        <uix:TargetAnchorable BrowserURL="https://www.hermitsp.com/forms/loans/servicing_steps_steps.aspx?eqs=2nGP4U%2bFPnxDEbBZdy13PMh7UvMkXmxgzTKxySlv388dDOrpqEwzSew%2fgN6iGCviK01%2fdU6soacfbAl6t1Nr5%2fkU51DvNCmYxxu5otQaG%2fc%3d" DesignTimeRectangle="685, 338, 579, 28" DesignTimeScaleFactor="1.25" FriendlyName="'Edit Step'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table' tableCol='2' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='TD' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='TD' class='' aaname='                                                                      ' check:innerText='Edit Step' /&gt;" Guid="c55f7717-16c6-451d-86ac-63d723970c4f" InformativeScreenshot="e8fb3d3ec5de296b2e3b825a035564ac.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Servicing &amp;gt; Assigned Compliance&amp;gt;Steps' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
+                                          <uix:TargetAnchorable.Anchors>
+                                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                              <uix:Target DesignTimeRectangle="700, 383, 584, 27" ElementType="Text" FriendlyName="'Step Item'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;table' idx='2' tableCol='2' tableRow='1' tag='TABLE' /&gt;&lt;webctrl class='hermit-subHeading' tableRow='1' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl class='hermit-subHeading' type='' tag='DIV' aaname='Step Item' check:innerText='Step Item' /&gt;" ImageBase64="" SearchSteps="Selector" />
+                                            </scg:List>
+                                          </uix:TargetAnchorable.Anchors>
+                                        </uix:TargetAnchorable>
+                                      </uix:VerifyExecutionOptions.Target>
+                                      <uix:VerifyExecutionOptions.Timeout>
+                                        <InArgument x:TypeArguments="x:Double" />
+                                      </uix:VerifyExecutionOptions.Timeout>
+                                    </uix:VerifyExecutionOptions>
+                                  </uix:NClick.VerifyOptions>
+                                </uix:NClick>
+                              </Sequence>
+                            </ActivityAction>
+                          </ui:RetryScope.ActivityBody>
+                          <ui:RetryScope.Condition>
+                            <ActivityFunc x:TypeArguments="x:Boolean" />
+                          </ui:RetryScope.Condition>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:RetryScope>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="530,143" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Step 2 of the DBF sequence has been submitted.&quot;]" />
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Home'" sap:VirtualizedContainerService.HintSize="530,157" sap2010:WorkflowViewState.IdRef="NClick_8" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8c68de06-1287-4165-a48f-0b97d47112d5" Version="V3">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.hermitsp.com/forms/loans/servicing_steps_steps.aspx?LoanSkey=994527&amp;stci=10&amp;ServicingType=1050&amp;mgtskey=16453061&amp;frmscrn=SERVSETUP" CvTextArea="49, 219, 43, 13" CvTextArgument="Home" CvType="Text" DesignTimeRectangle="51, 217, 42, 17" DesignTimeScaleFactor="1.25" ElementType="Text" FriendlyName="'Home'" FullSelectorArgument="&lt;webctrl tableRow='21' tag='TABLE' /&gt;&lt;webctrl aaname='Home' tableRow='1' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl aaname='Home' type='' tag='SPAN' class='' check:innerText='Home' /&gt;" Guid="3a3cfe87-8316-4c5a-ad4b-ece69acd5956" InformativeScreenshot="ee26e745a1fafd5c9fc56ab019574960.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Servicing &amp;gt; Assigned Compliance&amp;gt;Steps' /&gt;" SearchSteps="FuzzySelector, CV" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CvTextArea="49, 259, 38, 15" CvTextArgument="Loan" CvType="Text" DesignTimeRectangle="51, 257, 36, 17" ElementType="Text" FriendlyName="'Loan'" FullSelectorArgument="&lt;webctrl tableRow='21' tag='TABLE' /&gt;&lt;webctrl aaname='Loan' tableRow='1' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl aaname='Loan' type='' tag='SPAN' class='' check:innerText='Loan' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACgAAAAVCAYAAAA0GqweAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADjSURBVEhL7ZPBDYQgEEVpxSJswHg38ezZWAjW4ckWLMGTfVjGrC4MDAiJirvLJhz+hfn8ecMog6WFmJUAQ5UAQ/VHgFMBNWPAygJWYvi1EmCobgHO3ebbvVJ135gezPJ48D4fGhhL4usqM2fTRUArkEqFV8BddZbBOIkce0AqPtB+VwGHXAbpZvq1yJkhPRQ2V4Cql/bY27gEuPaZMwQbmufH17YBqd+X/QFAXHEO87vuf0G6zkcAz6wYG7m+yWcAPRIXT/wkaoijvgAovNjAVTvUd3CElkPcA4xUCTBUkQO28AI+20ssGL3E+QAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="501,143" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;The 'If DBF' (where there was a value of greater than 0) the loop is complete.&quot;]" />
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence sap:VirtualizedContainerService.HintSize="376,428" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,143" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;The 'If DBF' (there was NO value for DBF) sequence has completed successfully and the 'Email' sequence has begun.&quot;]" />
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Home'" sap:VirtualizedContainerService.HintSize="334,157" sap2010:WorkflowViewState.IdRef="NClick_9" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8c68de06-1287-4165-a48f-0b97d47112d5" Version="V3">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.hermitsp.com/default.aspx" CvTextArea="49, 217, 43, 16" CvTextArgument="Home" CvType="Text" DesignTimeRectangle="9, 206, 288, 40" DesignTimeScaleFactor="1.25" ElementType="Text" FriendlyName="'Home'" FullSelectorArgument="&lt;webctrl tableRow='21' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='A' class='current' aaname='                                                                                                     Home' check:innerText='Home' /&gt;" Guid="eac57fb2-fbd5-4774-b521-715e75eb6659" InformativeScreenshot="62e60ebbe5b42e0dfc7b8031fd4cca62.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Home' /&gt;" SearchSteps="FuzzySelector, CV" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target DesignTimeRectangle="33, 175, 44, 19" ElementType="Text" FriendlyName="'Home'" FullSelectorArgument="&lt;webctrl id='mainTable' tag='TABLE' /&gt;&lt;webctrl aaname='Home' tableRow='1' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl id='mainTable' tag='TABLE' /&gt;&lt;webctrl aaname='Home' type='' tag='SPAN' class='' check:innerText='Home' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAADAAAAAXCAYAAABNq8wJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEWSURBVFhH7ZUxDoMwDEV7gd6pN2LnHhyAGzAxs7ExIzY2RiQkVpcQJzhxUGlDG1HF0h9w7MTPTsTt/kjgyooAoRUBQuvPALIORgAYm8IIOrweQBEgtE4AKKCaFiextuQ5bVlDK5el9TXPnTpI9b5SaTPjItqat617AmBR9OByEJ4tBnMAZqgyM0bYBot7kQLzXjhIniPGCfDKVHGyOwPkdI9F8mD0O5vCC9F5qhl7zUR4Be41AeNAqvUQ7BzmGNfqAIBsDu2+ksxVNXgA4P39KsC+nQDwiwnw62nLC2BvzGsh1ht4F8Cdx/1eALoQOgV8ZDrmUwD1bTSIX1tPACH7P2BNxANAiL0FK8cEuKAiQGhFgLBK4AkZLyIuBPjMhAAAAABJRU5ErkJggg==" SearchSteps="Selector" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </ActivityAction>
+            </uix:NApplicationCard.Body>
+            <uix:NApplicationCard.TargetApp>
+              <uix:TargetApp Area="3831, -9, 1938, 1048" BrowserType="Chrome" IconBase64="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" InformativeScreenshot="cd867b32f55447ddc7e2844c0b0f316e.jpg" Selector="&lt;html app='chrome.exe' title='Home' /&gt;" Title="Servicing &gt; Assigned Compliance" Url="[in_HERMITHomeURLDBF]" />
+            </uix:NApplicationCard.TargetApp>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </uix:NApplicationCard>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="739,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_7">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Warn]" Message="[&quot;There has been a system failure in the 'If DBF' sequence. &quot; + exception.Message]" />
+              <Throw Exception="[exception]" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="Throw_1" />
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>
